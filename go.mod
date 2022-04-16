@@ -1,4 +1,4 @@
-module LeetCode-2022
+module github.com/Gavinyjb/LeetCode-2022
 
 go 1.15
 
