@@ -3,15 +3,15 @@ package main
 //Definition for a Node.
 type Node struct {
 	Val      int
-	Children []Node
+	Children []*Node
 }
 
-func levelOrder(root Node) [][]int {
+func levelOrder(root *Node) [][]int {
 	if root == nil {
 		return nil
 	}
 	res := make([][]int, 0)
-	queue := make([]*TreeNode, 0)
+	queue := make([]*Node, 0)
 	queue = append(queue, root)
 
 	for len(queue) != 0 {
@@ -21,11 +21,8 @@ func levelOrder(root Node) [][]int {
 			leave := queue[0]
 			queue = queue[1:]
 			list = append(list, leave.Val)
-			if leave.Left != nil {
-				queue = append(queue, leave.Left)
-			}
-			if leave.Right != nil {
-				queue = append(queue, leave.Right)
+			for j := 0; j < len(leave.Children); j++ {
+				queue = append(queue, leave.Children[j])
 			}
 		}
 		res = append(res, list)
