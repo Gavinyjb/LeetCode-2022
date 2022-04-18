@@ -6,7 +6,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func inorderTraversal(root *TreeNode) []int {
+func inorderTraversal1(root *TreeNode) []int {
 	if root == nil {
 		return nil
 	}
