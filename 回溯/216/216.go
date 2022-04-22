@@ -39,6 +39,6 @@ func combinationSum3(k int, n int) [][]int {
 	return res
 }
 func main() {
-	fmt.Println(combinationSum3(3,9))
+	fmt.Println(combinationSum3(3, 9))
 
 }
