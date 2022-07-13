@@ -6,19 +6,41 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func preorderTraversal(root *TreeNode) []int {
+//func preorderTraversal(root *TreeNode) []int {
+//	if root == nil {
+//		return nil
+//	}
+//	result := make([]int, 0)
+//	stack := make([]*TreeNode, 0)
+//
+//	for root != nil || len(stack) != 0 {
+//		for root != nil {
+//			// 前序遍历，所以先保存结果
+//			result = append(result, root.Val)
+//			stack = append(stack, root)
+//			root = root.Left //一直向左
+//		}
+//		//pop
+//		node := stack[len(stack)-1]
+//		stack = stack[:len(stack)-1]
+//		root = node.Right
+//	}
+//	return result
+//}
+//非递归先序
+func preorder1(root *TreeNode) []int {
 	if root == nil {
 		return nil
 	}
 	result := make([]int, 0)
 	stack := make([]*TreeNode, 0)
 
-	for root != nil || len(stack) != 0 {
+	for root != nil || len(stack) > 0 {
 		for root != nil {
-			// 前序遍历，所以先保存结果
+			//先序遍历，保存结果
 			result = append(result, root.Val)
 			stack = append(stack, root)
-			root = root.Left //一直向左
+			root = root.Left //一路向左
 		}
 		//pop
 		node := stack[len(stack)-1]

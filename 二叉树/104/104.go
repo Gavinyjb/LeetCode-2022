@@ -1,53 +1,79 @@
 package main
 
-import gavin "github.com/Gavinyjb/LeetCode-2022/01-structures"
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
-type TreeNode = gavin.TreeNode
-
-//递归 后序  其实是求根节点高度的逻辑
+//层序遍历
 func maxDepth1(root *TreeNode) int {
+	level := levelOrder(root)
+	return len(level)
+}
+func levelOrder(root *TreeNode) [][]int {
+	if root == nil {
+		return nil
+	}
+	res := make([][]int, 0)
+	queue := make([]*TreeNode, 0)
+	queue = append(queue, root)
+
+	for len(queue) != 0 {
+		l := len(queue)
+		list := make([]int, 0)
+		for i := 0; i < l; i++ {
+			leave := queue[0]
+			queue = queue[1:]
+			list = append(list, leave.Val)
+			if leave.Left != nil {
+				queue = append(queue, leave.Left)
+			}
+			if leave.Right != nil {
+				queue = append(queue, leave.Right)
+			}
+		}
+		res = append(res, list)
+	}
+	return res
+}
+
+//DFS 深度搜索 递归
+func maxDepth2(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	left := maxDepth(root.Left)
-	right := maxDepth(root.Right)
-	return max(left, right) + 1
+	return max(maxDepth(root.Left), maxDepth(root.Right)) + 1
 }
 func max(a, b int) int {
 	if a > b {
 		return a
-	} else {
-		return b
 	}
+	return b
 }
 
-//递归 先序 求节点深度
+//递归
 func maxDepth(root *TreeNode) int {
-	result := 0
 	if root == nil {
-		return result
+		return 0
 	}
-	var getDepth func(node *TreeNode, depth int)
-	getDepth = func(node *TreeNode, depth int) {
-		if depth > result {
-			result = depth
+	// depth 记录遍历到的节点的深度    ret:记录最大深度
+	depth, ret := 0, 0
+	var help func(root *TreeNode)
+	help = func(root *TreeNode) {
+		//到达叶子节点，更新最大深度
+		if root == nil {
+			if depth > ret {
+				ret = depth
+			}
 		}
-		if node.Left == nil && node.Right == nil { //到达叶子节点
-			return
-		}
-		if node.Left != nil {
-			depth++
-			getDepth(node.Left, depth)
-			depth--
-		}
-		if node.Right != nil {
-			depth++
-			getDepth(node.Right, depth)
-			depth--
-		}
+		depth++ //进入节点
+		help(root.Left)
+		help(root.Right)
+		depth-- //离开节点
 	}
-	getDepth(root, 1)
-	return result
+	help(root)
+	return ret
 }
 
 func main() {
