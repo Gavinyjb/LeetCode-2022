@@ -1,5 +1,7 @@
 package 模板
 
+import "fmt"
+
 /**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -44,18 +46,16 @@ func preorder(root *TreeNode) []int {
 	}
 	result := make([]int, 0)
 	stack := make([]*TreeNode, 0)
-	var lastVisit *TreeNode
+	var visitedNode *TreeNode
 	for root != nil || len(stack) > 0 {
 		for root != nil {
 			stack = append(stack, root)
-			root = root.Left //
+			root = root.Left
 		}
-		//先看看 不弹出
 		node := stack[len(stack)-1]
-		if node.Right == nil || node.Right == lastVisit {
-			result = append(result, node.Val)
+		if node.Right == nil || node.Right == visitedNode {
 			stack = stack[:len(stack)-1]
-			lastVisit = node
+			visitedNode = node
 		} else {
 			root = node.Right
 		}

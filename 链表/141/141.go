@@ -1,4 +1,4 @@
-package main
+package leetcode
 
 type ListNode struct {
 	Val  int
@@ -16,7 +16,4 @@ func hasCycle(head *ListNode) bool {
 		}
 	}
 	return false
-}
-func main() {
-
 }
