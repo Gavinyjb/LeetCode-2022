@@ -1,12 +1,10 @@
-package
-
-import "math/rand"
-380
+package main
 
 import (
 	"fmt"
 	"math/rand"
 )
+
 type RandomizedSet struct {
 	keyList []int
 	hashmap map[int]int
@@ -41,7 +39,6 @@ func (rs *RandomizedSet) Remove(val int) bool {
 func (rs *RandomizedSet) GetRandom() int {
 	return rs.keyList[rand.Intn(len(rs.keyList))]
 }
-
 
 /**
  * Your RandomizedSet object will be instantiated and called as such:
