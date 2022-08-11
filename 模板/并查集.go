@@ -1,12 +1,6 @@
 package 模板
 
-type UnionFindInterface interface {
-	Init()
-	Find()
-	Union()
-	GetCount()
-	IsConnect() bool
-}
+
 type UnionFind struct {
 	parent []int
 	rank   []int
