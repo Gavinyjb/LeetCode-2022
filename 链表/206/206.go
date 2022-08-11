@@ -9,23 +9,13 @@ func reverseList2(head *ListNode) *ListNode {
 	if head == nil {
 		return head
 	}
-	return reverse(nil, head)
-}
-func reverse(prev, head *ListNode) *ListNode {
-	if head == nil {
-		return prev
+	prev:=new(ListNode)
+	for head!=nil{
+		temp:=head.Next
+		head.Next=prev
+		prev=head
+		head=temp
 	}
-	//保存当前的head.Next状态
-	temp := head.Next
-	head.Next = prev
-	return reverse(head, temp)
+	return prev
 }
 
-//func reverse(pre,head *ListNode)*ListNode{
-//	if head==nil{
-//		return pre
-//	}
-//	next:=head.Next
-//	head.Next=pre
-//	return  reverse(head,next)
-//}
