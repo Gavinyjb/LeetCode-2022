@@ -1,6 +1,6 @@
 package topinterviewquestions;
 
-public class Problem_0033_SearchInRotatedSortedArray {
+public class Problem_0033_SearchInRotatedSortedArray{
 
 	public static int search(int[] arr, int num) {
 		int L = 0;
