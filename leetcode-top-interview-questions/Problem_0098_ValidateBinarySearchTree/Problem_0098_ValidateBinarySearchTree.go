@@ -1,11 +1,56 @@
 package Problem_0098_ValidateBinarySearchTree
 
+import "math"
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
 }
 
+func isValidBST3(root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+	return process(root).isBST
+}
+
+type info struct {
+	isBST  bool
+	minval int
+	maxval int
+}
+
+func process(root *TreeNode) info {
+	//if root.Left == nil && root.Right == nil {
+	//	return info{isBST: true, minval: root.Val, maxval: root.Val}
+	//}
+	if root == nil {
+		return info{isBST: true, minval: math.MaxInt, maxval: math.MinInt}
+	}
+	leftInfo := process(root.Left)
+	rightInfo := process(root.Right)
+	max := root.Val
+	max = Max(max, leftInfo.maxval)
+	max = Max(max, rightInfo.maxval)
+	min := root.Val
+	min = Min(min, leftInfo.minval)
+	min = Min(min, rightInfo.minval)
+	isBST := leftInfo.isBST && rightInfo.isBST && leftInfo.maxval < root.Val && rightInfo.minval > root.Val
+	return info{isBST: isBST, minval: min, maxval: max}
+}
+func Max(a, b int) int {
+	if a < b {
+		return b
+	}
+	return a
+}
+func Min(a, b int) int {
+	if a > b {
+		return b
+	}
+	return a
+}
 func isValidBST(root *TreeNode) bool {
 	return morris(root)
 }

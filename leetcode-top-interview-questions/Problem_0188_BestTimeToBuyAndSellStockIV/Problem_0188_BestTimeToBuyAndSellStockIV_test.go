@@ -1,11 +1,11 @@
-package Problem_0122_BestTimeToBuyAndSellStockII
+package Problem_0188_BestTimeToBuyAndSellStockIV
 
 import "testing"
 
 func TestMaxProfit(t *testing.T) {
-	prices := []int{7, 1, 5, 3, 6, 4}
+	prices := []int{3, 3, 5, 0, 0, 3, 1, 4}
 
-	want := 7
+	want := 6
 	got := maxProfit(prices)
 	if got != want {
 		t.Errorf("want:=%v got:=%v\n", want, got)

@@ -14,7 +14,7 @@ func partition(nums []int, start, end int) int {
 		for l < r && nums[r] > x {
 			r--
 		}
-		for l < r && nums[l] < x {
+		for l < r && nums[l] <= x {
 			l++
 		}
 		if l < r {
