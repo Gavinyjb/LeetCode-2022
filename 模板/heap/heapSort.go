@@ -1,4 +1,4 @@
-package 模板
+package heap
 
 func HeapSort(a []int) []int {
 	// 1、无序数组a
@@ -59,6 +59,7 @@ func sink(a []int, i int, length int) {
 		i = idx
 	}
 }
+
 func swap(a []int, i, j int) {
 	a[i], a[j] = a[j], a[i]
 }

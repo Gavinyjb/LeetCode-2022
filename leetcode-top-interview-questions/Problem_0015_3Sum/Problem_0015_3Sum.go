@@ -4,14 +4,14 @@ import "sort"
 
 func threeSum(nums []int) [][]int {
 	sort.Ints(nums)
-	ans :=make([][]int,0)
+	ans := make([][]int, 0)
 	// 第一个数选了i位置的数
 	for i := 0; i < len(nums)-2; i++ {
 		var nexts [][]int
-		if i==0||nums[i-1]!=nums[i]{
-			nexts=twoSum(nums,i+1,-nums[i])
-			for idx:= range nexts {
-				nexts[idx]=append(nexts[idx], nums[i])
+		if i == 0 || nums[i-1] != nums[i] {
+			nexts = twoSum(nums, i+1, -nums[i])
+			for idx := range nexts {
+				nexts[idx] = append(nexts[idx], nums[i])
 			}
 		}
 		ans = append(ans, nexts...)

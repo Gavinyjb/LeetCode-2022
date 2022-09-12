@@ -18,7 +18,10 @@ func TestQuickSort1(t *testing.T) {
 	quickSort(want, 0, len(nums)-1)
 	fmt.Println(nums)
 	fmt.Println(want)
-
+}
+func TestPattition(t *testing.T) {
+	arr := []int{1, 2, 3}
+	fmt.Println(arr[:3])
 }
 
 func checkSlice(a, b []int) bool {
