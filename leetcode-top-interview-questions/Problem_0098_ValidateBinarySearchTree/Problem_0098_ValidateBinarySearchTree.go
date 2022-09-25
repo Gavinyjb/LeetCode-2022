@@ -8,6 +8,41 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+func isValidBST(root *TreeNode) bool {
+	return help(root).isBST
+}
+func help(root *TreeNode) info {
+	if root == nil {
+		return info{
+			isBST:  true,
+			minval: 0,
+			maxval: 0,
+		}
+	} else {
+		val := root.Val
+		leftInfo := help(root.Left)
+		rightInfo := help(root.Right)
+
+		minOfRoot := Min(leftInfo.minval, rightInfo.minval)
+		minOfRoot := Min(minOfRoot, val)
+		maxOfRoot := Max(leftInfo.maxval, rightInfo.maxval)
+		maxOfRoot := Max(maxOfRoot, val)
+		if leftInfo.isBST && rightInfo.isBST && leftInfo.maxval < root.Val && rightInfo.minval > root.Val {
+			return info{
+				isBST:  true,
+				minval: minOfRoot,
+				maxval: maxOfRoot,
+			}
+		} else {
+			return info{
+				isBST:  false,
+				minval: minOfRoot,
+				maxval: maxOfRoot,
+			}
+		}
+	}
+}
+
 func isValidBST3(root *TreeNode) bool {
 	if root == nil {
 		return true
@@ -51,7 +86,14 @@ func Min(a, b int) int {
 	}
 	return a
 }
-func isValidBST(root *TreeNode) bool {
+func Abs(a, b int) int {
+	if a > b {
+		return a - b
+	} else {
+		return b - a
+	}
+}
+func isValidBST2(root *TreeNode) bool {
 	return morris(root)
 }
 func morris(root *TreeNode) bool {
