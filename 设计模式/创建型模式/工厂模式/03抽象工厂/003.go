@@ -1,4 +1,4 @@
-package chouxiang
+package main
 
 import "fmt"
 
@@ -18,4 +18,11 @@ func NewPerson(name string, age int) Person {
 		Name: name,
 		Age:  age,
 	}
+}
+
+func main() {
+	var p Person
+	p = NewPerson("yvjinbo", 23)
+	fmt.Println(p)
+	p.Greet()
 }

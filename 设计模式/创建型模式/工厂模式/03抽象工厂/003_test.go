@@ -1,4 +1,4 @@
-package chouxiang
+package main
 
 import (
 	"fmt"
